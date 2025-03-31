@@ -36,7 +36,7 @@ void SceneManager::tick()
     lcd->print("After boot (2 sec)");
 
     lcd->setCursor(0, 2);
-    lcd->print("Time sins boot:");
+    lcd->print("Time since boot:");
 
     lcd->setCursor(0, 3);
     lcd->print(std::to_string((int)millis()).c_str());
