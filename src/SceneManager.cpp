@@ -16,30 +16,37 @@ void SceneManager::tick()
     delta_time = time - last_time;
     last_time = time;
 
-    // prevent too big lags to interrupt any kind of interaction (bigger than 0.5 sec)
+    // prevent too big lags from interrupting any kind of interaction (lags bigger than 0.5 sec)
     if (delta_time > 500)
     {
         delta_time = 0;
     }
 
-    // for bootup animation :)
+    // for bootup animation
     if (boot)
     {
         boot_anim_tick();
         return;
     }
 
-    lcd->setCursor(0, 0);
-    lcd->print("Hello, World!");
+    if (in_main_menu)
+    {
+        lcd->setCursor(0, 1);
+        lcd->print(game_names[current_selected].c_str());
+    }
 
-    lcd->setCursor(0, 1);
-    lcd->print("After boot (2 sec)");
+    else if (paused)
+    {
+        // "12345678901234567890"
+        // "   - - PAUSED - -   "
+        lcd->setCursor(0, 1);
+        lcd->print("   - - PAUSED - -   ");
+    }
 
-    lcd->setCursor(0, 2);
-    lcd->print("Time since boot:");
-
-    lcd->setCursor(0, 3);
-    lcd->print(std::to_string((int)millis()).c_str());
+    else
+    {
+        games[current]->tick(delta_time);
+    }
 }
 
 void SceneManager::boot_anim_tick()
@@ -66,11 +73,12 @@ void SceneManager::boot_anim_tick()
         // "12345678901234567890"
         // "      RAMENESP      "
         lcd->setCursor(0, 1);
-        lcd->print("      RAMENESP      ");
+        lcd->print("     RAMEN-ESP      ");
     }
 
     if (boot_counter >= boot_time)
     {
+        lcd->clear();
         boot = false;
     }
 }
