@@ -9,7 +9,7 @@
 class SceneManager
 {
 private:
-    LiquidCrystal_I2C* lcd;
+    LiquidCrystal_I2C *lcd;
 
     int delta_time = 0;
     int time = 0;
@@ -20,13 +20,11 @@ private:
     int boot_counter = 0;
 
     int game_count = 1;
-    Games::BaseGame* games[1] = {
-        new Games::TestGame(lcd)
-    };
+    Games::BaseGame *games[1] = {
+        new Games::TestGame(lcd)};
 
     std::string game_names[1] = {
-        "Test Game"
-    };
+        "Test Game"};
 
     bool paused = false;
     bool in_main_menu = true;
@@ -35,9 +33,11 @@ private:
     int current = 0;
 
 public:
-    SceneManager(LiquidCrystal_I2C* lcd);
+    SceneManager(LiquidCrystal_I2C *lcd);
 
     void tick();
+    void update();
+    void render();
     void boot_anim_tick();
 };
 

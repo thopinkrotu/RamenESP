@@ -8,14 +8,16 @@ namespace Games
     class BaseGame
     {
     private:
-        LiquidCrystal_I2C* lcd;
+        LiquidCrystal_I2C *lcd;
 
     public:
         BaseGame();
-        BaseGame(LiquidCrystal_I2C* lcd);
+        BaseGame(LiquidCrystal_I2C *lcd);
 
-        virtual void init(LiquidCrystal_I2C* lcd);
+        virtual void init(LiquidCrystal_I2C *lcd);
         virtual void tick(int delta_time);
+        virtual void update(int delta_time);
+        virtual void render();
     };
 
     class TestGame : public BaseGame
@@ -23,9 +25,9 @@ namespace Games
     private:
     public:
         TestGame();
-        TestGame(LiquidCrystal_I2C* lcd);
+        TestGame(LiquidCrystal_I2C *lcd);
 
-        void init(LiquidCrystal_I2C* lcd) override;
+        void init(LiquidCrystal_I2C *lcd) override;
         void tick(int delta_time) override;
     };
 };

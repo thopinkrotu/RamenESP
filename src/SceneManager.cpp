@@ -1,15 +1,15 @@
-#include <SceneManager.h>
-
 #include <string>
-
 #include <LiquidCrystal_I2C.h>
 
-SceneManager::SceneManager(LiquidCrystal_I2C* lcd)
+#include <SceneManager.h>
+#include <Utility.h>
+
+SceneManager::SceneManager(LiquidCrystal_I2C *lcd)
 {
     this->lcd = lcd;
 }
 
-void SceneManager::tick()
+void SceneManager::update()
 {
     // calculation of delta time
     time = millis();
@@ -28,7 +28,26 @@ void SceneManager::tick()
         boot_anim_tick();
         return;
     }
+    
+    // actualy switch scenes (games)
+    std::string direction = Utility::getStickDirection();
 
+    if (direction == "right")
+    {
+        current_selected += 1;
+    }
+
+    else if (direction == "left")
+    {
+        current_selected -= 1;
+    }
+
+    current_selected += game_count;
+    current_selected %= game_count;
+}
+
+void SceneManager::render()
+{
     if (in_main_menu)
     {
         lcd->setCursor(0, 1);
@@ -47,6 +66,12 @@ void SceneManager::tick()
     {
         games[current]->tick(delta_time);
     }
+}
+
+void SceneManager::tick()
+{
+    update();
+    render();
 }
 
 void SceneManager::boot_anim_tick()

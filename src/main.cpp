@@ -6,7 +6,8 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 SceneManager scene_manager(&lcd);
 
-void setup() {
+void setup()
+{
     // init lcd display
     lcd.init();
     lcd.backlight();
@@ -18,6 +19,7 @@ void setup() {
     }
 }
 
-void loop() {
+void loop()
+{
     scene_manager.tick();
 }
