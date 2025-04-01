@@ -26,31 +26,51 @@ void SceneManager::update()
     // for bootup animation
     if (boot)
     {
-        boot_anim_tick();
+        boot_counter += delta_time;
         return;
     }
     
-    // actualy switch scenes (games)
-    std::string direction = Utility::getStickDirection();
-
-    if (direction == "right")
+    if (in_main_menu)
     {
-        current_selected += 1;
-    }
+        // actualy switch scenes (games)
+        std::string direction = Utility::getStickDirection();
 
-    else if (direction == "left")
-    {
-        current_selected -= 1;
-    }
+        if (direction == "right" && joystick_is_resting)
+        {
+            current_selected += 1;
+            changed = true;
+            joystick_is_resting = false;
+        }
 
-    current_selected += game_count;
-    current_selected %= game_count;
+        else if (direction == "left" && joystick_is_resting)
+        {
+            current_selected -= 1;
+            changed = true;
+            joystick_is_resting = false;
+        }
+
+        else if (direction == "center")
+        {
+            joystick_is_resting = true;
+        }
+
+        current_selected += game_count;
+        current_selected %= game_count;
+    }
 }
 
 void SceneManager::render()
 {
-    if (in_main_menu)
+    if (boot)
     {
+        boot_anim_render();
+        return;
+    }
+
+    if (in_main_menu && changed)
+    {
+        lcd->clear();
+
         lcd->setCursor(0, 0);
         lcd->write(byte(0));
 
@@ -59,6 +79,8 @@ void SceneManager::render()
 
         lcd->setCursor(0, 1);
         lcd->print(game_names[current_selected].c_str());
+
+        changed = false;
     }
 
     else if (paused)
@@ -81,9 +103,8 @@ void SceneManager::tick()
     render();
 }
 
-void SceneManager::boot_anim_tick()
+void SceneManager::boot_anim_render()
 {
-    boot_counter += delta_time;
     if (boot_counter < 1250)
     {
         // "12345678901234567890"

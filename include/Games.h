@@ -28,7 +28,8 @@ namespace Games
         TestGame(LiquidCrystal_I2C *lcd);
 
         void init(LiquidCrystal_I2C *lcd) override;
-        void tick(int delta_time) override;
+        void update(int delta_time) override;
+        void render() override;
     };
 };
 

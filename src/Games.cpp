@@ -27,10 +27,11 @@ void Games::TestGame::init(LiquidCrystal_I2C *lcd)
 {
 }
 
-void Games::TestGame::tick(int delta_time)
+void Games::TestGame::update(int delta_time)
 {
 }
 
-// Muss auch essen :)
-// komm vielleicht nachher wieder
-//&& was heßt denn vieleicht ;)
+void Games::TestGame::render()
+{
+}
+
