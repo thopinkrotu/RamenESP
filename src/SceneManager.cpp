@@ -1,4 +1,5 @@
 #include <string>
+#include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 
 #include <SceneManager.h>
@@ -50,6 +51,12 @@ void SceneManager::render()
 {
     if (in_main_menu)
     {
+        lcd->setCursor(0, 0);
+        lcd->write(byte(0));
+
+        lcd->setCursor(19, 0);
+        lcd->write(byte(1));
+
         lcd->setCursor(0, 1);
         lcd->print(game_names[current_selected].c_str());
     }
