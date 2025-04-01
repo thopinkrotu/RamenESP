@@ -1,6 +1,6 @@
 ![RamenESP](https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true)
 
-[<img src="https://s18955.pcdn.co/wp-content/uploads/2018/02/github.png" width="25"/>](https://github.com/user/repository/subscription)
+[<img src="https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true" width="25"/>]
 
 [![from MaTZ Lab](https://www.matz.uni-luebeck.de/matz-lab)](Origin)
 
