@@ -1,4 +1,4 @@
-!(https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true)
+![RamenESP](https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true)
 
 [![from MaTZ Lab](https://www.matz.uni-luebeck.de/matz-lab)](Origin)
 
