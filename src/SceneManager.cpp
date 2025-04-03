@@ -29,6 +29,24 @@ void SceneManager::update()
         boot_counter += delta_time;
         return;
     }
+
+    // act acording to button presses
+    if (Utility::pressedPaused() && !in_main_menu)
+    {
+        paused = !paused;
+    }
+
+    if (Utility::pressedMenu())
+    {
+        paused = false;
+        in_main_menu = true;
+    }
+
+    if (Utility::pressedSelect() && in_main_menu)
+    {
+        in_main_menu = false;
+        paused = false;
+    }
     
     if (in_main_menu)
     {
