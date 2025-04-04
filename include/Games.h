@@ -31,6 +31,12 @@ namespace Games
         void update(int delta_time) override;
         void render() override;
     };
+    
+    class ChromeDino : public BaseGame
+    {
+    private:
+    public:
+    };
 };
 
 #endif
