@@ -14,24 +14,17 @@ void Games::BaseGame::tick(int delta_time)
 }
 
 // Games
-Games::TestGame::TestGame(LiquidCrystal_I2C *lcd)
-{
-    init(lcd);
-}
+// Chrome Dino
+Games::ChromeDino::ChromeDino() {};
+Games::ChromeDino::ChromeDino(LiquidCrystal_I2C *lcd) { init(lcd) };
 
-Games::TestGame::TestGame()
-{
-}
+Games::ChromeDino::init(LiquidCrystal_I2C *lcd) {};
 
-void Games::TestGame::init(LiquidCrystal_I2C *lcd)
-{
-}
+// Test Game
+Games::TestGame::TestGame(LiquidCrystal_I2C *lcd) { init(lcd) };
 
-void Games::TestGame::update(int delta_time)
-{
-}
-
-void Games::TestGame::render()
-{
-}
+Games::TestGame::TestGame() {};
+void Games::TestGame::init(LiquidCrystal_I2C *lcd) {};
+void Games::TestGame::update(int delta_time) {};
+void Games::TestGame::render() {};
 
