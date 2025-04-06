@@ -7,13 +7,13 @@ const int JOYSTICK_X = 27;
 const int JOYSTICK_Y = 26;
 const int JOYSTICK_DOWN = 25;
 
-const int PAUSE_PIN = 32;
+const int PAUSE_PIN = 34;
 bool is_paused_down = false;
 
 const int MAIN_MENU_PIN = 35;
 bool is_menu_down = false;
 
-const int SELECT_PIN = 34;
+const int SELECT_PIN = 32;
 bool is_select_down = false;
 
 std::string Utility::getStickDirection()
@@ -62,14 +62,19 @@ std::string Utility::getStickDirection()
 
 bool Utility::pressedPaused()
 {
-    if (!is_paused_down && digitalRead(PAUSE_PIN))
+    bool value = digitalRead(PAUSE_PIN);
+
+    Serial.print("PAUSED: ");
+    Serial.println(value);
+
+    if (!is_paused_down && value)
     {
         Serial.println("PAUSED");
         is_paused_down = true;
         return true;
     }
 
-    else if (!digitalRead(PAUSE_PIN))
+    else if (!value)
     {
         is_paused_down = false;
     }
@@ -79,14 +84,19 @@ bool Utility::pressedPaused()
 
 bool Utility::pressedMenu()
 {
-    if (!is_menu_down && digitalRead(MAIN_MENU_PIN))
+    bool value = digitalRead(MAIN_MENU_PIN);
+
+    Serial.print("MENU: ");
+    Serial.println(value);
+
+    if (!is_menu_down && value)
     {
         Serial.println("MENU");
         is_menu_down = true;
         return true;
     }
 
-    else if (!digitalRead(MAIN_MENU_PIN))
+    else if (!value)
     {
         is_menu_down = false;
     }
@@ -96,14 +106,19 @@ bool Utility::pressedMenu()
 
 bool Utility::pressedSelect()
 {
-    if (!is_select_down && digitalRead(SELECT_PIN))
+    bool value = digitalRead(SELECT_PIN);
+
+    Serial.print("SELECT: ");
+    Serial.println(value);
+
+    if (!is_select_down && value)
     {
         Serial.println("SELECT");
         is_select_down = true;
         return true;
     }
 
-    else if (!digitalRead(SELECT_PIN))
+    else if (!value)
     {
         is_select_down = false;
     }

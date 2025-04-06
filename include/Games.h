@@ -8,6 +8,7 @@ namespace Games
     class BaseGame
     {
     private:
+    protected:
         LiquidCrystal_I2C *lcd;
 
     public:
@@ -35,6 +36,8 @@ namespace Games
     class ChromeDino : public BaseGame
     {
     private:
+        bool jumping;
+
     public:
         ChromeDino();
         ChromeDino(LiquidCrystal_I2C *lcd);

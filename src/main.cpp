@@ -9,9 +9,9 @@ SceneManager scene_manager(&lcd);
 
 const int JOYSTICK_DOWN = 25;
 
-const int PAUSE_PIN = 32;
+const int PAUSE_PIN = 34;
 const int MAIN_MENU_PIN = 35;
-const int SELECT_PIN = 34;
+const int SELECT_PIN = 32;
 
 void setup()
 {

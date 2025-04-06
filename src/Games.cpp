@@ -16,17 +16,26 @@ void Games::BaseGame::tick(int delta_time)
 // Games
 // Chrome Dino
 Games::ChromeDino::ChromeDino() {};
-Games::ChromeDino::ChromeDino(LiquidCrystal_I2C *lcd) { init(lcd) };
+Games::ChromeDino::ChromeDino(LiquidCrystal_I2C *lcd) { init(lcd); };
 
-Games::ChromeDino::init(LiquidCrystal_I2C *lcd) {};
-Games::ChromeDino::update(int delta_time) {};
-Games::ChromeDino::render() {};
+void Games::ChromeDino::init(LiquidCrystal_I2C *lcd)
+{
+    this->lcd = lcd;
+    jumping = false;
+}
+
+void Games::ChromeDino::update(int delta_time) {};
+void Games::ChromeDino::render() {};
 
 // Test Game
-Games::TestGame::TestGame(LiquidCrystal_I2C *lcd) { init(lcd) };
+Games::TestGame::TestGame(LiquidCrystal_I2C *lcd) { init(lcd); };
 Games::TestGame::TestGame() {};
 
-void Games::TestGame::init(LiquidCrystal_I2C *lcd) {};
+void Games::TestGame::init(LiquidCrystal_I2C *lcd) { this->lcd = lcd; };
 void Games::TestGame::update(int delta_time) {};
-void Games::TestGame::render() {};
-
+void Games::TestGame::render()
+{
+    lcd->clear();
+    lcd->setCursor(0, 0);
+    lcd->print("Hello, Test Game");
+}
