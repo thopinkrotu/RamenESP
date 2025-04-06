@@ -31,6 +31,18 @@ namespace Games
         void update(int delta_time) override;
         void render() override;
     };
+    
+    class ChromeDino : public BaseGame
+    {
+    private:
+    public:
+        ChromeDino();
+        ChromeDino(LiquidCrystal_I2C *lcd);
+
+        void init(LiquidCrystal_I2C *lcd) override;
+        void update(int delta_time) override;
+        void render() override;
+    };
 };
 
 #endif
