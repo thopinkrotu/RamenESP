@@ -8,17 +8,13 @@ namespace Games
     class BaseGame
     {
     private:
-    protected:
-        LiquidCrystal_I2C *lcd;
-
     public:
         BaseGame();
-        BaseGame(LiquidCrystal_I2C *lcd);
 
-        virtual void init(LiquidCrystal_I2C *lcd);
-        virtual void tick(int delta_time);
+        virtual void init();
+        virtual void tick(int delta_time, LiquidCrystal_I2C *lcd);
         virtual void update(int delta_time);
-        virtual void render();
+        virtual void render(LiquidCrystal_I2C *lcd);
     };
 
     class TestGame : public BaseGame
@@ -26,11 +22,10 @@ namespace Games
     private:
     public:
         TestGame();
-        TestGame(LiquidCrystal_I2C *lcd);
 
-        void init(LiquidCrystal_I2C *lcd) override;
+        void init() override;
         void update(int delta_time) override;
-        void render() override;
+        void render(LiquidCrystal_I2C *lcd) override;
     };
     
     class ChromeDino : public BaseGame
@@ -42,9 +37,9 @@ namespace Games
         ChromeDino();
         ChromeDino(LiquidCrystal_I2C *lcd);
 
-        void init(LiquidCrystal_I2C *lcd) override;
+        void init() override;
         void update(int delta_time) override;
-        void render() override;
+        void render(LiquidCrystal_I2C *lcd) override;
     };
 };
 

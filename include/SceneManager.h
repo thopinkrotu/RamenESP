@@ -21,7 +21,7 @@ private:
 
     int game_count = 2;
     Games::BaseGame *games[1] = {
-        new Games::TestGame(lcd)};
+        new Games::TestGame()};
 
     std::string game_names[2] = {
         "Test Game",

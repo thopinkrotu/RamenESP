@@ -111,7 +111,7 @@ void SceneManager::render()
 
     else
     {
-        games[current]->tick(delta_time);
+        games[current]->tick(delta_time, lcd);
     }
 }
 

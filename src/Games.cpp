@@ -1,39 +1,35 @@
 #include <Games.h>
 
 // declarations of base functions for BaseGame class (mostly empty : to be modified by game dev)
-Games::BaseGame::BaseGame(LiquidCrystal_I2C *lcd) { init(lcd); };
 Games::BaseGame::BaseGame() {};
 
-void Games::BaseGame::init(LiquidCrystal_I2C *lcd) {};
+void Games::BaseGame::init() {};
 void Games::BaseGame::update(int delta_time) {};
-void Games::BaseGame::render() {};
-void Games::BaseGame::tick(int delta_time)
+void Games::BaseGame::render(LiquidCrystal_I2C *lcd) {};
+void Games::BaseGame::tick(int delta_time, LiquidCrystal_I2C *lcd)
 {
     update(delta_time);
-    render();
+    render(lcd);
 }
 
 // Games
 // Chrome Dino
 Games::ChromeDino::ChromeDino() {};
-Games::ChromeDino::ChromeDino(LiquidCrystal_I2C *lcd) { init(lcd); };
 
-void Games::ChromeDino::init(LiquidCrystal_I2C *lcd)
+void Games::ChromeDino::init()
 {
-    this->lcd = lcd;
     jumping = false;
 }
 
 void Games::ChromeDino::update(int delta_time) {};
-void Games::ChromeDino::render() {};
+void Games::ChromeDino::render(LiquidCrystal_I2C *lcd) {};
 
 // Test Game
-Games::TestGame::TestGame(LiquidCrystal_I2C *lcd) { init(lcd); };
 Games::TestGame::TestGame() {};
 
-void Games::TestGame::init(LiquidCrystal_I2C *lcd) { this->lcd = lcd; };
+void Games::TestGame::init() {};
 void Games::TestGame::update(int delta_time) {};
-void Games::TestGame::render()
+void Games::TestGame::render(LiquidCrystal_I2C *lcd)
 {
     lcd->clear();
     lcd->setCursor(0, 0);
