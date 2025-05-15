@@ -3,9 +3,11 @@
 
 #include <Chars.h>
 #include <SceneManager.h>
+#include <LcdInterface.h>
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
-SceneManager scene_manager(&lcd);
+LcdInterface lcd_interface(&lcd);
+SceneManager scene_manager(&lcd_interface);
 
 const int JOYSTICK_DOWN = 25;
 

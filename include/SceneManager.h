@@ -1,7 +1,7 @@
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
 
-#include <LiquidCrystal_I2C.h>
+#include <LcdInterface.h>
 
 #include <Games.h>
 #include <string>
@@ -9,7 +9,7 @@
 class SceneManager
 {
 private:
-    LiquidCrystal_I2C *lcd;
+    LcdInterface *lcd;
 
     int delta_time = 0;
     int time = 0;
@@ -37,7 +37,7 @@ private:
     bool changed = true;
 
 public:
-    SceneManager(LiquidCrystal_I2C *lcd);
+    SceneManager(LcdInterface *lcd);
 
     void tick();
     void update();

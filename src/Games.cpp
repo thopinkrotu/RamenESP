@@ -5,8 +5,8 @@ Games::BaseGame::BaseGame() {};
 
 void Games::BaseGame::init() {};
 void Games::BaseGame::update(int delta_time) {};
-void Games::BaseGame::render(LiquidCrystal_I2C *lcd) {};
-void Games::BaseGame::tick(int delta_time, LiquidCrystal_I2C *lcd)
+void Games::BaseGame::render(LcdInterface *lcd) {};
+void Games::BaseGame::tick(int delta_time, LcdInterface *lcd)
 {
     update(delta_time);
     render(lcd);
@@ -22,14 +22,14 @@ void Games::ChromeDino::init()
 }
 
 void Games::ChromeDino::update(int delta_time) {};
-void Games::ChromeDino::render(LiquidCrystal_I2C *lcd) {};
+void Games::ChromeDino::render(LcdInterface *lcd) {};
 
 // Test Game
 Games::TestGame::TestGame() {};
 
 void Games::TestGame::init() {};
 void Games::TestGame::update(int delta_time) {};
-void Games::TestGame::render(LiquidCrystal_I2C *lcd)
+void Games::TestGame::render(LcdInterface *lcd)
 {
     lcd->clear();
     lcd->setCursor(0, 0);

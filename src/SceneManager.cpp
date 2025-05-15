@@ -1,11 +1,11 @@
 #include <string>
 #include <Arduino.h>
-#include <LiquidCrystal_I2C.h>
+#include <LcdInterface.h>
 
 #include <SceneManager.h>
 #include <Utility.h>
 
-SceneManager::SceneManager(LiquidCrystal_I2C *lcd)
+SceneManager::SceneManager(LcdInterface *lcd)
 {
     this->lcd = lcd;
 }
@@ -47,7 +47,7 @@ void SceneManager::update()
         in_main_menu = false;
         paused = false;
     }
-    
+
     if (in_main_menu)
     {
         // actualy switch scenes (games)

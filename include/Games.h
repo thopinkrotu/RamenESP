@@ -1,7 +1,7 @@
 #ifndef GAMES_H
 #define GAMES_H
 
-#include <LiquidCrystal_I2C.h>
+#include <LcdInterface.h>
 
 namespace Games
 {
@@ -12,9 +12,9 @@ namespace Games
         BaseGame();
 
         virtual void init();
-        virtual void tick(int delta_time, LiquidCrystal_I2C *lcd);
+        virtual void tick(int delta_time, LcdInterface *lcd);
         virtual void update(int delta_time);
-        virtual void render(LiquidCrystal_I2C *lcd);
+        virtual void render(LcdInterface *lcd);
     };
 
     class TestGame : public BaseGame
@@ -25,9 +25,9 @@ namespace Games
 
         void init() override;
         void update(int delta_time) override;
-        void render(LiquidCrystal_I2C *lcd) override;
+        void render(LcdInterface *lcd) override;
     };
-    
+
     class ChromeDino : public BaseGame
     {
     private:
@@ -35,11 +35,11 @@ namespace Games
 
     public:
         ChromeDino();
-        ChromeDino(LiquidCrystal_I2C *lcd);
+        ChromeDino(LcdInterface *lcd);
 
         void init() override;
         void update(int delta_time) override;
-        void render(LiquidCrystal_I2C *lcd) override;
+        void render(LcdInterface *lcd) override;
     };
 };
 
