@@ -126,4 +126,36 @@ bool Utility::pressedSelect()
     return false;
 }
 
+bool Utility::areCharArraysEqual(char arr1[20][4], char arr2[20][4])
+{
+    for (int x = 0; x < 20; x++)
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            if (arr1[x][y] != arr2[x][y])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool Utility::areIntArraysEqual(int arr1[20][4], int arr2[20][4])
+{
+    for (int x = 0; x < 20; x++)
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            if (arr1[x][y] != arr2[x][y])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 // hydrogen.exe

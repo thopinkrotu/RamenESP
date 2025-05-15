@@ -1,5 +1,7 @@
 #include <LcdInterface.h>
 
+#include <Utility.h>
+
 LcdInterface::LcdInterface(LiquidCrystal_I2C *lcd)
 {
     this->lcd = lcd;
@@ -16,6 +18,16 @@ void LcdInterface::setCursor(int x, int y)
 
 void LcdInterface::print(std::string text)
 {
+    char display_char_before[20][4];
+
+    for (int x = 0; x < 20; x++)
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            display_char_before[x][y] = display_char[x][y];
+        }
+    }
+
     if (text.length() == 0)
     {
         return;
@@ -36,13 +48,23 @@ void LcdInterface::print(std::string text)
     }
 
     cursor[0] -= written;
-    changed = true;
+
+    if (!Utility::areCharArraysEqual(display_char_before, display_char))
+    {
+        changed = true;
+    }
 }
 
 void LcdInterface::write(int char_id)
 {
     if (char_id < 0)
     {
+        return;
+    }
+
+    else if (display_custom[cursor[0]][cursor[1]] == char_id)
+    {
+        display_char[cursor[0]][cursor[1]] = ' ';
         return;
     }
 
@@ -104,8 +126,6 @@ void LcdInterface::render()
             }
         }
     }
-
-    this->clear();
 
     changed = false;
 }
