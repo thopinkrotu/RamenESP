@@ -1,0 +1,1 @@
+~/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-addr2line -pfiaC -e .pio/build/upesy_wroom/firmware.elf 0x4008684a:0x3ffb21a0 0x400e41fe:0x3ffb21b0 0x400d1939:0x3ffb21d0 0x400d1d39:0x3ffb2210 0x400d1db0:0x3ffb2250 0x400d1fe6:0x3ffb2270 0x400d4511:0x3ffb2290

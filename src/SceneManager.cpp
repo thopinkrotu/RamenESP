@@ -85,10 +85,8 @@ void SceneManager::render()
         return;
     }
 
-    if (in_main_menu && changed)
+    if (in_main_menu)
     {
-        lcd->clear();
-
         lcd->setCursor(0, 0);
         lcd->write(byte(0));
 
@@ -113,6 +111,8 @@ void SceneManager::render()
     {
         games[current]->tick(delta_time, lcd);
     }
+
+    lcd->render();
 }
 
 void SceneManager::tick()
@@ -149,7 +149,6 @@ void SceneManager::boot_anim_render()
 
     if (boot_counter >= boot_time)
     {
-        lcd->clear();
         boot = false;
     }
 }

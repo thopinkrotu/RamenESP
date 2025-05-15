@@ -34,9 +34,14 @@ void setup()
     {
         lcd.createChar(i, Chars::chars[i]);
     }
+
+    // initialize array values
+    lcd_interface.clear();
 }
 
 void loop()
 {
-    scene_manager.tick();
+    // scene_manager.tick();
+    lcd_interface.print("Test, Hello?");
+    lcd_interface.render();
 }

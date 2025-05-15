@@ -21,11 +21,13 @@ void LcdInterface::print(std::string text)
         return;
     }
 
+    int written = 0;
     for (int i = 0; i < text.length(); i++)
     {
-        display_char[cursor[0]][cursor[1]] = &text.at(i);
+        display_char[cursor[0]][cursor[1]] = text[i];
         display_custom[cursor[0]][cursor[1]] = -1;
 
+        written += 1;
         cursor[0] += 1;
         if (cursor[0] >= 20)
         {
@@ -33,6 +35,7 @@ void LcdInterface::print(std::string text)
         }
     }
 
+    cursor[0] -= written;
     changed = true;
 }
 
@@ -43,7 +46,7 @@ void LcdInterface::write(int char_id)
         return;
     }
 
-    display_char[cursor[0]][cursor[1]] = (char *)" ";
+    display_char[cursor[0]][cursor[1]] = ' ';
     display_custom[cursor[0]][cursor[1]] = char_id;
 
     changed = true;
@@ -55,14 +58,21 @@ void LcdInterface::clear()
     {
         for (int y = 0; y < 4; y++)
         {
-            display_char[x][y] = (char *)" ";
+            display_char[x][y] = ' ';
             display_custom[x][y] = -1;
         }
     }
+
+    changed = true;
 }
 
 void LcdInterface::render()
 {
+    if (!changed)
+    {
+        return;
+    }
+
     lcd->clear();
 
     for (int y = 0; y < 4; y++)
@@ -71,8 +81,13 @@ void LcdInterface::render()
 
         for (int x = 0; x < 20; x++)
         {
-            text.append(display_char[x][y]);
+            Serial.print(display_char[x][y]);
+            Serial.print(", ");
+
+            text += display_char[x][y];
         }
+
+        Serial.println(text.c_str());
 
         lcd->setCursor(0, y);
         lcd->print(text.c_str());
@@ -89,6 +104,8 @@ void LcdInterface::render()
             }
         }
     }
+
+    this->clear();
 
     changed = false;
 }
