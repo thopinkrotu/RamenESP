@@ -8,6 +8,16 @@ LcdInterface::LcdInterface(LiquidCrystal_I2C *lcd)
 
     cursor[0] = 0;
     cursor[1] = 0;
+
+    for (int x = 0; x < 20; x++)
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            display_char_before[x][y] = ' ';
+        }
+    }
+
+    this->clear();
 }
 
 void LcdInterface::setCursor(int x, int y)
@@ -18,16 +28,6 @@ void LcdInterface::setCursor(int x, int y)
 
 void LcdInterface::print(std::string text)
 {
-    char display_char_before[20][4];
-
-    for (int x = 0; x < 20; x++)
-    {
-        for (int y = 0; y < 4; y++)
-        {
-            display_char_before[x][y] = display_char[x][y];
-        }
-    }
-
     if (text.length() == 0)
     {
         return;
@@ -48,11 +48,6 @@ void LcdInterface::print(std::string text)
     }
 
     cursor[0] -= written;
-
-    if (!Utility::areCharArraysEqual(display_char_before, display_char))
-    {
-        changed = true;
-    }
 }
 
 void LcdInterface::write(int char_id)
@@ -70,8 +65,6 @@ void LcdInterface::write(int char_id)
 
     display_char[cursor[0]][cursor[1]] = ' ';
     display_custom[cursor[0]][cursor[1]] = char_id;
-
-    changed = true;
 }
 
 void LcdInterface::clear()
@@ -84,48 +77,34 @@ void LcdInterface::clear()
             display_custom[x][y] = -1;
         }
     }
-
-    changed = true;
 }
 
 void LcdInterface::render()
 {
-    if (!changed)
-    {
-        return;
-    }
-
-    lcd->clear();
-
     for (int y = 0; y < 4; y++)
     {
-        std::string text = "";
-
         for (int x = 0; x < 20; x++)
         {
-            Serial.print(display_char[x][y]);
-            Serial.print(", ");
+            bool charChanged = display_char[x][y] != display_char_before[x][y];
+            bool customChanged = display_custom[x][y] != display_custom_before[x][y];
 
-            text += display_char[x][y];
-        }
-
-        Serial.println(text.c_str());
-
-        lcd->setCursor(0, y);
-        lcd->print(text.c_str());
-    }
-
-    for (int x = 0; x < 20; x++)
-    {
-        for (int y = 0; y < 4; y++)
-        {
-            if (display_custom[x][y] >= 0)
+            if (charChanged || customChanged)
             {
                 lcd->setCursor(x, y);
-                lcd->write(byte(display_custom[x][y]));
+
+                if (display_custom[x][y] >= 0)
+                {
+                    lcd->write(byte(display_custom[x][y]));
+                    display_char_before[x][y] = ' ';
+                }
+                else
+                {
+                    lcd->print(display_char[x][y]);
+                    display_char_before[x][y] = display_char[x][y];
+                }
+
+                display_custom_before[x][y] = display_custom[x][y];
             }
         }
     }
-
-    changed = false;
 }

@@ -82,8 +82,11 @@ void SceneManager::render()
     if (boot)
     {
         boot_anim_render();
+        lcd->render();
         return;
     }
+
+    lcd->clear();
 
     if (in_main_menu)
     {
@@ -103,6 +106,10 @@ void SceneManager::render()
     {
         // "12345678901234567890"
         // "   - - PAUSED - -   "
+        int print_x = (int)(9 - game_names[current_selected].length() / 2);
+        lcd->setCursor(print_x, 0);
+        lcd->print(game_names[current_selected]);
+
         lcd->setCursor(0, 1);
         lcd->print("   - - PAUSED - -   ");
     }
@@ -150,5 +157,6 @@ void SceneManager::boot_anim_render()
     if (boot_counter >= boot_time)
     {
         boot = false;
+        lcd->clear();
     }
 }

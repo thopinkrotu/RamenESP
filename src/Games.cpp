@@ -31,6 +31,7 @@ void Games::TestGame::init() {};
 void Games::TestGame::update(int delta_time) {};
 void Games::TestGame::render(LcdInterface *lcd)
 {
+    lcd->clear();
     lcd->setCursor(0, 0);
     lcd->print("Hello, Test Game");
 }

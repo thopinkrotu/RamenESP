@@ -9,10 +9,12 @@ class LcdInterface
 {
 private:
     LiquidCrystal_I2C *lcd;
-    bool changed = false;
 
     char display_char[20][4];
+    char display_char_before[20][4];
+
     int display_custom[20][4];
+    int display_custom_before[20][4];
 
     int cursor[2];
 
