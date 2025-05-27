@@ -4,6 +4,7 @@
 
 #include <SceneManager.h>
 #include <Utility.h>
+#include <Chars.h>
 
 SceneManager::SceneManager(LcdInterface *lcd)
 {
@@ -46,6 +47,16 @@ void SceneManager::update()
     {
         in_main_menu = false;
         paused = false;
+
+        current = current_selected;
+
+        for (int i = 0; i < MAX_CUSTOM_CHARS; i++)
+        {
+            if (games[current]->chars[i] != 0)
+            {
+                lcd->createChar((uint8_t)i, Chars::chars[games[current]->chars[i]]);
+            }
+        }
     }
 
     if (in_main_menu)
@@ -75,6 +86,11 @@ void SceneManager::update()
         current_selected += game_count;
         current_selected %= game_count;
     }
+
+    if (!in_main_menu && !paused)
+    {
+        games[current]->update(delta_time);
+    }
 }
 
 void SceneManager::render()
@@ -91,10 +107,10 @@ void SceneManager::render()
     if (in_main_menu)
     {
         lcd->setCursor(0, 0);
-        lcd->write(byte(0));
+        lcd->write(0, true);
 
         lcd->setCursor(19, 0);
-        lcd->write(byte(1));
+        lcd->write(1, true);
 
         lcd->setCursor(0, 1);
         lcd->print(game_names[current_selected].c_str());
@@ -116,7 +132,7 @@ void SceneManager::render()
 
     else
     {
-        games[current]->tick(delta_time, lcd);
+        games[current]->render(lcd);
     }
 
     lcd->render();

@@ -21,9 +21,11 @@ private:
 public:
     LcdInterface(LiquidCrystal_I2C *lcd);
 
+    void createChar(uint8_t char_id, byte char_map[]);
+
     void setCursor(int x, int y);
     void print(std::string text);
-    void write(int char_id);
+    void write(int char_id, bool real_id = false);
     void clear();
 
     void render();

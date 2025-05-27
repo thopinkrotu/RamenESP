@@ -27,11 +27,16 @@ void Games::ChromeDino::render(LcdInterface *lcd) {};
 // Test Game
 Games::TestGame::TestGame() {};
 
-void Games::TestGame::init() {};
+void Games::TestGame::init()
+{
+    chars[0] = 0;
+};
 void Games::TestGame::update(int delta_time) {};
 void Games::TestGame::render(LcdInterface *lcd)
 {
     lcd->clear();
     lcd->setCursor(0, 0);
     lcd->print("Hello, Test Game");
+    lcd->setCursor(0, 1);
+    lcd->write(0);
 }

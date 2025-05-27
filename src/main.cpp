@@ -29,11 +29,9 @@ void setup()
     lcd.init();
     lcd.backlight();
 
-    // upload chars to lcd display
-    for (int i = 0; i < Chars::char_count; i++)
-    {
-        lcd.createChar(i, Chars::chars[i]);
-    }
+    // upload default chars to lcd display (arrows for menu)
+    lcd.createChar(0, Chars::arrow_left);
+    lcd.createChar(1, Chars::arrow_right);
 }
 
 void loop()

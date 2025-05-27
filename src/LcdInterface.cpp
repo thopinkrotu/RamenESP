@@ -50,8 +50,14 @@ void LcdInterface::print(std::string text)
     cursor[0] -= written;
 }
 
-void LcdInterface::write(int char_id)
+void LcdInterface::write(int char_id, bool real_id)
 {
+    if (!real_id)
+    {
+        // to account for 2 default chars when games are rendering their own chars
+        char_id += 2;
+    }
+
     if (char_id < 0)
     {
         return;
@@ -107,4 +113,10 @@ void LcdInterface::render()
             }
         }
     }
+}
+
+void LcdInterface::createChar(uint8_t char_id, byte char_map[])
+{
+    // +2 because of the two default chars
+    lcd->createChar(char_id + 2, char_map);
 }
