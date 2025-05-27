@@ -1,4 +1,4 @@
-<img src="https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true" width="80"/>
+<img src="https://github.com/thopinkrotu/RamenESP/blob/main/assets/ramenesp_logo.png?raw=true" width="100"/>
 
 
 ===========
