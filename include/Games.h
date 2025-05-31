@@ -3,6 +3,8 @@
 
 #include <LcdInterface.h>
 
+#include <vector>
+
 const int MAX_CUSTOM_CHARS = 10;
 
 namespace Games
@@ -11,9 +13,9 @@ namespace Games
     {
     private:
     public:
-        // dont use 0 as index to your custom char because it will be ignored when loading chars onto the display (just start at 1)
         // index in this list is refering to the array "chars" in namespace Chars in file Chars.h
-        int chars[MAX_CUSTOM_CHARS] = {};
+        // index in this list is also the index used when rendering the char
+        std::vector<int> chars = {};
 
         BaseGame();
 
@@ -41,11 +43,32 @@ namespace Games
 
     public:
         ChromeDino();
-        ChromeDino(LcdInterface *lcd);
 
         void init() override;
         void update(int delta_time) override;
         void render(LcdInterface *lcd) override;
+    };
+
+    class Snake : public BaseGame
+    {
+    private:
+        std::string direction = "right";
+        std::vector<std::vector<int>> segments = {};
+
+        std::vector<int> start_pos = {0, 0};
+
+        // in sqares per second
+        int speed = 2;
+        int move_counter = 0;
+
+    public:
+        Snake();
+
+        void init() override;
+        void update(int delta_time) override;
+        void render(LcdInterface *lcd) override;
+
+        void newApple();
     };
 };
 

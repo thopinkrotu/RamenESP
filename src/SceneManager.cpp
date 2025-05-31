@@ -50,12 +50,10 @@ void SceneManager::update()
 
         current = current_selected;
 
-        for (int i = 0; i < MAX_CUSTOM_CHARS; i++)
+        for (int i = 0; i < games[current]->chars.size(); i++)
         {
-            if (games[current]->chars[i] != 0)
-            {
-                lcd->createChar((uint8_t)i, Chars::chars[games[current]->chars[i]]);
-            }
+            games[current]->init();
+            lcd->createChar((uint8_t)i, Chars::chars[games[current]->chars[i]]);
         }
     }
 

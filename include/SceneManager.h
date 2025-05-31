@@ -19,13 +19,16 @@ private:
     int boot_time = 5000;
     int boot_counter = 0;
 
-    int game_count = 2;
-    Games::BaseGame *games[1] = {
-        new Games::TestGame()};
+    int game_count = 3;
+    Games::BaseGame *games[3] = {
+        new Games::TestGame(),
+        new Games::TestGame(),
+        new Games::Snake()};
 
-    std::string game_names[2] = {
+    std::string game_names[3] = {
         "Test Game",
-        "Test Game 2"};
+        "Test Game 2",
+        "Snake"};
 
     bool paused = false;
     bool in_main_menu = true;

@@ -26,6 +26,10 @@ std::string Utility::getStickDirection()
     x = analogRead(JOYSTICK_X) - 2048;
     y = analogRead(JOYSTICK_Y) - 2048;
 
+    // Serial.print(x);
+    // Serial.print(", ");
+    // Serial.println(y);
+
     // normalize values
     x = x / 2048;
     y = y / 2048;
@@ -64,12 +68,12 @@ bool Utility::pressedPaused()
 {
     bool value = digitalRead(PAUSE_PIN);
 
-    Serial.print("PAUSED: ");
-    Serial.println(value);
+    // Serial.print("PAUSED: ");
+    // Serial.println(value);
 
     if (!is_paused_down && value)
     {
-        Serial.println("PAUSED");
+        // Serial.println("PAUSED");
         is_paused_down = true;
         return true;
     }
@@ -86,12 +90,12 @@ bool Utility::pressedMenu()
 {
     bool value = digitalRead(MAIN_MENU_PIN);
 
-    Serial.print("MENU: ");
-    Serial.println(value);
+    // Serial.print("MENU: ");
+    // Serial.println(value);
 
     if (!is_menu_down && value)
     {
-        Serial.println("MENU");
+        // Serial.println("MENU");
         is_menu_down = true;
         return true;
     }
@@ -108,12 +112,12 @@ bool Utility::pressedSelect()
 {
     bool value = digitalRead(SELECT_PIN);
 
-    Serial.print("SELECT: ");
-    Serial.println(value);
+    // Serial.print("SELECT: ");
+    // Serial.println(value);
 
     if (!is_select_down && value)
     {
-        Serial.println("SELECT");
+        // Serial.println("SELECT");
         is_select_down = true;
         return true;
     }

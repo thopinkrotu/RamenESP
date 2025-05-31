@@ -1,7 +1,5 @@
 #include <Chars.h>
 
-byte *Chars::chars[1] = {player};
-
 byte Chars::player[] = {
     B01110,
     B01110,
@@ -51,3 +49,15 @@ byte Chars::arrow_right[] = {
     B00110,
     B00100,
     B00000};
+
+byte Chars::full_block[] = {
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111};
+
+byte *Chars::chars[2] = {player, full_block};
